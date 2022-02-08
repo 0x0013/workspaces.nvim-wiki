@@ -7,6 +7,8 @@ Please follow the following format:
 ## Short Title or Description (h2)
 **Dependencies**: *list required plugins if applicable*
 
+*briefly explain the behavior*
+
 ```lua
 require("workspaces.nvim").setup({
   -- setup code here
@@ -21,6 +23,9 @@ Further details, notes, instructions, etc. here.
 
 ## Telescope file finder
 **Dependencies**: [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+
+Opens a Telescope file fuzzy finder after switching directories.
+
 ```lua
 require("workspaces").setup({
   hooks = {
@@ -31,6 +36,9 @@ require("workspaces").setup({
 
 ## Open nvim-tree
 **Dependencies**: [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
+
+Ensures NvimTree is open after switching directories
+
 ```lua
 require("workspaces").setup({
   hooks = {
@@ -41,21 +49,18 @@ require("workspaces").setup({
 
 ## Simple sessions.nvim integration
 **Dependencies**: [natecraddock/sessions.nvim](https://github.com/natecraddock/sessions.nvim)
+
+Uses sessions.nvim to load a saved buffer, window, and tab layout from the current directory
+after opening a workspace. If no session exists, nothing happens.
+
 ```lua
 require("workspaces").setup({
   hooks = {
-    -- hooks run before change directory
     open_pre = {
-      -- If recording, save current session state and stop recording
       "SessionsStop",
-
-      -- delete all buffers (does not save changes)
       "silent %bdelete!",
     },
-
-    -- hooks run after change directory
     open = {
-      -- load saved session from current directory if it exists
       function()
         require("sessions").load(nil, { silent = true })
       end
