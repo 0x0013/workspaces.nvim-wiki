@@ -1,3 +1,4 @@
 Welcome to the workspaces.nvim wiki!
 
-[[Configuration Recipes]]
+* [[Configuration Recipes]]
+* [[Troubleshooting]]
