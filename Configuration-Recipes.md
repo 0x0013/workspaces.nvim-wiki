@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "VimEnter" }, {
     end,
 
     if selected_workspace then workspaces.open(selected_workspace.name) end
-  end
+  end,
 
   group = my_ws_grp
 })
@@ -149,7 +149,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "VimEnter" }, {
 require("workspaces").setup({
   hooks = {
     open = {
-      -- do not run hooks if file already in dir
+      -- do not run hooks if file already in active workspace
       function()
         if current_file_in_ws() then
           return false
